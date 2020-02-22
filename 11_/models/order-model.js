@@ -1,6 +1,6 @@
 const { connection, Sequelize } = require('../db')
 
-module.exports = connection.define('cart', {
+module.exports = connection.define('order', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

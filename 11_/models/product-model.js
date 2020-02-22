@@ -1,17 +1,15 @@
+const { connection, Sequelize } = require('../db')
 
-
-const Sequelize = require('sequelize')
-
-const sequelize = require('../data/database-connection')
-
-module.exports = sequelize.define('product', {
+module.exports = connection.define('product', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    title: Sequelize.STRING,
+    title: {
+        type: Sequelize.STRING
+    },
     price: {
         type: Sequelize.DOUBLE,
         allowNull: false
@@ -23,6 +21,9 @@ module.exports = sequelize.define('product', {
     description: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    },
+},
+{
+    underscored: true
 })
 

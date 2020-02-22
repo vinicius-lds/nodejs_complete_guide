@@ -1,30 +1,48 @@
-const cartDao = require('../data/cart-dao')
-const productDao = require('../data/product-dao')
-
+const Product = require('../models/product-model')
+const pageNotFoundController = require('./page-not-found-controller')
 
 module.exports.renderCartPage = (req, res, next) => {
-    cart.fetchFirst(cartModel => {
-        const productIds = cartModel.getItems().map(cartProductModel => cartProductModel.getProductId())
-        productDao.findBulkById(productIds, productModels => {
-            const cartProductsData = productModels.map(productModel => {
-                const productQuantity = cartModel.getItems()
-                    .filter(cartProductModel => cartProductModel.getProductId() === productModel.getId())
-                    .map(cartProductModel => cartProductModel.getQuantity())[0]
-                return { productData: productModel, qty: productQuantity }
-            })
+    req.user.getCart()
+        .then(cart => {
+            console.log(cart)
+            return cart.getProducts()
+        })
+        .then(products => {
             res.render('shop/cart', {
                 pageTitle: 'Cart',
                 path: '/cart',
-                products: cartProductsData
+                products: products
             })
         })
-    })
+        .catch(err => {
+            console.error(err)
+            pageNotFoundController.renderPageNotFoundPage(req, res, next)
+        })
 }
 
 module.exports.addProductToCart  = (req, res, next) => {
-    productDao.findById(req.body.productId)
-        .then(productModel => {
-            cart.addProductToCart(productModel)
-            res.redirect('/cart')
+    const fetchedData = {}
+    req.user.getCart()
+        .then(cart => {
+            fetchedData.cart = cart
+            return cart.getProducts({ where: { id: req.body.productId } })
+        })
+        .then(products => {
+            if (products.length) {
+                fetchedData.product = products[0]
+                fetchedData.quantity = fetchedData.product.cartItem.quantity + 1
+                return fetchedData.product
+            } else {
+                fetchedData.quantity = 1
+                return Product.findByPk(req.body.productId)
+            }
+        })
+        .then(product => {
+            return fetchedData.cart.addProduct(product, { through: { quantity: fetchedData.quantity } })
+        })
+        .then(() => res.redirect('/cart'))
+        .catch(err => {
+            console.error(err)
+            return res.redirect('/cart')
         })
 }

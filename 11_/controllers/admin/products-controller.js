@@ -1,7 +1,7 @@
-const ProductModel = require('../../models/product-model')
+const Product = require('../../models/product-model')
 
 module.exports.renderProductsPage = (req, res, next) => {
-    ProductModel.findAll().then(products => {
+    req.user.getProducts().then(products => {
         res.render('admin/products', {
             pageTitle: 'Products',
             path: '/admin/products',

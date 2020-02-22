@@ -1,9 +1,9 @@
 const pageNotFoundController = require('../page-not-found-controller')
-const ProductModel = require('../../models/product-model')
+const Product = require('../../models/product-model')
 
 
 module.exports.renderEditProductPage = (req, res, next) => {
-    ProductModel.findByPk(req.params.id)
+    req.user.getProducts({ where: { id: req.params.id } })
         .then(product => {
             res.render('admin/edit-product', {
                 pageTitle: 'Edit Product',
@@ -16,7 +16,7 @@ module.exports.renderEditProductPage = (req, res, next) => {
 }
 
 module.exports.postProduct = (req, res, next) => {
-    ProductModel.findByPk(req.body.productId)
+    Product.findByPk(req.body.productId)
         .then(product => {
             product.title = req.body.title
             product.imageUrl = req.body.imageUrl

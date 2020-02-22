@@ -1,4 +1,4 @@
-const ProductModel = require('../../models/product-model')
+const Product = require('../../models/product-model')
 
 
 module.exports.renderAddProductPage = (req, res, next) => {
@@ -10,11 +10,18 @@ module.exports.renderAddProductPage = (req, res, next) => {
 }
 
 module.exports.postProduct = (req, res, next) => {
-    ProductModel.create({
+    req.user.createProduct({
         title: req.body.title,
         price: req.body.price,
         imageUrl: req.body.imageUrl,
-        description: req.body.description  
+        description: req.body.description,
     })
+    // Product.create({
+    //     title: req.body.title,
+    //     price: req.body.price,
+    //     imageUrl: req.body.imageUrl,
+    //     description: req.body.description,
+    //     userId: req.user.id
+    // })
     res.redirect('/admin/products')
 }
