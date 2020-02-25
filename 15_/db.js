@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const connectMongoDBSession = require('connect-mongodb-session')
 
 module.exports = {
-    MONGO_DB_URI: 'mongodb+srv://vinicius-lds:bbxHqEDHQIgoaqRa@cluster0-5uo8n.gcp.mongodb.net/shop?retryWrites=true&w=majority',
+    MONGO_DB_URI: 'mongodb://localhost:27017/shop',
     ObjectId: ObjectId,
     mongoose: mongoose,
     Schema: mongoose.Schema,

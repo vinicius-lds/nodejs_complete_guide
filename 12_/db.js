@@ -11,7 +11,7 @@ module.exports = {
     },
     setup() {
         return MongoClient
-            .connect('mongodb+srv://vinicius-lds:bbxHqEDHQIgoaqRa@cluster0-5uo8n.gcp.mongodb.net/shop?retryWrites=true&w=majority')
+            .connect('mongodb://localhost:27017/shop')
             .then(client => {
                 state.client = client
                 state.db = client.db('shop')

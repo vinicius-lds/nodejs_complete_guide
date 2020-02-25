@@ -8,7 +8,7 @@ module.exports = {
     model: mongoose.model,
     setup() {
         return mongoose
-            .connect('mongodb+srv://vinicius-lds:bbxHqEDHQIgoaqRa@cluster0-5uo8n.gcp.mongodb.net/shop?retryWrites=true&w=majority')
+            .connect('mongodb://localhost:27017/shop')
             .catch(err => {
                 console.error(err)
                 throw 'Failed to connect to MongoDB'
