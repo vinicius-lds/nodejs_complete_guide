@@ -4,3 +4,4 @@
 *.code-workspace
 */public/images/*
 */data/invoices/*.pdf
+*/dist/
