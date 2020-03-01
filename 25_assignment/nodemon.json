@@ -1,0 +1,6 @@
+{
+  "ignore": [],
+  "watch": ["src"],
+  "exec": "npm run clean && tsc -p . && node dist/app.js",
+  "ext": "ts"
+}

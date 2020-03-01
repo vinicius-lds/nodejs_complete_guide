@@ -3,5 +3,7 @@
 */data/*.json
 *.code-workspace
 */public/images/*
+*/public/image/*
 */data/invoices/*.pdf
 */dist/
+*/resources/
