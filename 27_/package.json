@@ -1,0 +1,36 @@
+{
+  "name": "24_",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon dist/app.js",
+    "clean": "if exist dist rmdir dist /S /Q"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.2",
+    "@types/express-validator": "^3.0.0",
+    "@types/jsonwebtoken": "^8.3.8",
+    "@types/mongoose": "^5.7.3",
+    "@types/multer": "^1.4.2",
+    "@types/socket.io": "^2.1.4",
+    "@types/uuid": "^7.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.2",
+    "multer": "^1.4.2",
+    "socket.io": "^2.3.0",
+    "uuid": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.2",
+    "nodemon": "^1.19.1",
+    "typescript": "^3.8.3"
+  }
+}
