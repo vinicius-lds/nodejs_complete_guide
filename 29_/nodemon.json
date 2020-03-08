@@ -1,0 +1,9 @@
+{
+  "env": {
+    "NODEMAILER_API_KEY": "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",
+    "NODEMAILER_EMAIL_FROM": "shop@node-complete.com",
+    "MONGO_DB_CONNECTION_STRING": "mongodb://localhost:27017/shop",
+    "PORT": 3000,
+    "STRIPE_KEY": "sk_test_p0iwFOJZGE9HDgcZmX3ZwlTL00ksW2a7Jm"
+  }
+}
